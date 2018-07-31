@@ -16,13 +16,13 @@ class AlarmManager(private val context: Context) {
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
 
     private fun alarmExists(serviceType: Int, requestCode: Int): Boolean {
-        val intent = if (serviceType == 0) SampleService1.createIntent() else SampleService2.createIntent()
+        val intent = if (serviceType == 0) SampleService1.createIntent(context) else SampleService2.createIntent(context)
         return PendingIntent.getService(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null
     }
 
 
     private fun createIntent(serviceType: Int, bundle: Bundle? = null): Intent {
-        return if (serviceType == 0) SampleService1.createIntent(bundle) else SampleService2.createIntent(bundle)
+        return if (serviceType == 0) SampleService1.createIntent(context, bundle) else SampleService2.createIntent(context, bundle)
     }
 
 

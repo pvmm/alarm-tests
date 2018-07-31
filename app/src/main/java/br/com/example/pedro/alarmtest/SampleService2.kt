@@ -1,17 +1,18 @@
 package br.com.example.pedro.alarmtest
 
 import android.app.IntentService
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 
-class SampleService2(name: String? = "Sample Service 2") : IntentService(name) {
+class SampleService2(name: String? = "SampleService2") : IntentService(name) {
 
     companion object {
-        fun createIntent(bundle: Bundle? = null): Intent {
+        fun createIntent(context: Context, bundle: Bundle? = null): Intent {
             MyApplication.warn("Creating SS2 intent...")
-            return Intent(MyApplication.context.get(), this::class.java).apply {
-                bundle?.let { this.putExtras(bundle) }
+            return Intent(context, SampleService2::class.java).apply {
+                bundle?.let { bundle -> putExtras(bundle) }
             }
         }
     }

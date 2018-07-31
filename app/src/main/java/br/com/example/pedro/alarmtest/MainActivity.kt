@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         alarmManager = AlarmManager(this)
 
         addButton.setOnClickListener {
-            val calendar = Calendar.getInstance().apply { add(Calendar.MINUTE, 5) }
+            val calendar = Calendar.getInstance().apply { add(Calendar.MINUTE, 2) }
             val serviceType = loadServiceType()
             val requestCode = loadRequestCode()
 
