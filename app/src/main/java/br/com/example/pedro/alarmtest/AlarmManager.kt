@@ -6,13 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import br.com.example.pedro.alarmtest.MyApplication.Companion.warn
 import java.util.*
 
 class AlarmManager(private val context: Context) {
 
     companion object {
-        val requestCodeKey = "RequestCode"
+        val extraTimestampKey = "timestamp"
     }
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
@@ -38,7 +39,8 @@ class AlarmManager(private val context: Context) {
 
 
     fun scheduleAlarm(serviceType: Int, requestCode: Int, alarmDate: Date) {
-        val intent = createIntent(serviceType, Bundle().apply { putInt(requestCodeKey, requestCode) })
+        Log.d("KOTLIN", "AlarmManager.scheduleAlarm() called with timestamp = ${alarmDate.time}")
+        val intent = createIntent(serviceType, Bundle().apply { putLong(extraTimestampKey, alarmDate.time) })
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmDate.time,
                 DateUtils.WEEK_IN_MILLIS, createPendingIntent(serviceType, requestCode, intent))
         warn("Alarm set to launch at $alarmDate")

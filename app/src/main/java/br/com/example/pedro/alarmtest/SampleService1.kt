@@ -38,7 +38,7 @@ class SampleService1(name: String? = "SampleService1") : IntentService(name) {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         warn("SampleService1.onStartCommand() called successfully with $intent.")
         intent.extras?.let {
-            warn("SampleService1.onStartCommand().requestCode = ${it[AlarmManager.requestCodeKey]}.")
+            warn("SampleService1.onStartCommand().timestamp = ${it[AlarmManager.extraTimestampKey]}.")
         }
         return START_STICKY
     }
