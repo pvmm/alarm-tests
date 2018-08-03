@@ -10,9 +10,9 @@ class SampleService2(name: String? = "SampleService2") : IntentService(name) {
 
     companion object {
         fun createIntent(context: Context, bundle: Bundle? = null): Intent {
-            MyApplication.warn("Creating SS2 intent...")
-            return Intent(context, SampleService2::class.java).apply {
-                bundle?.let { bundle -> putExtras(bundle) }
+            MyApplication.warn("Creating SS1 intent...")
+            return Intent(context, SampleService1::class.java).apply {
+                bundle?.let { putExtras(it) }
             }
         }
     }
@@ -37,6 +37,9 @@ class SampleService2(name: String? = "SampleService2") : IntentService(name) {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         warn("SampleService2.onStartCommand() called successfully with $intent.")
+        intent.extras?.let {
+            warn("SampleService1.onStartCommand().requestCode = ${it[AlarmManager.requestCodeKey]}.")
+        }
         return START_STICKY
     }
 

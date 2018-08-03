@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(MainActivity::javaClass.name, "onCreate()")
-        alarmManager = AlarmManager(this)
+        alarmManager = AlarmManager(MyApplication.context.get()!!)
 
         addButton.setOnClickListener {
             val calendar = Calendar.getInstance().apply { add(Calendar.MINUTE, 2) }

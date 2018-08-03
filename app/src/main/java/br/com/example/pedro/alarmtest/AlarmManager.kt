@@ -11,7 +11,9 @@ import java.util.*
 
 class AlarmManager(private val context: Context) {
 
-    private val requestCodeKey = "RequestCode"
+    companion object {
+        val requestCodeKey = "RequestCode"
+    }
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
 
